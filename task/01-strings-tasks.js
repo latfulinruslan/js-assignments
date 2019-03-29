@@ -130,7 +130,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    return value.replace(value, '');
+    return value.replace(value, "");
 }
 
 /**
@@ -145,7 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    return value.substring(1, value.length - 1);
+    return value.substring(1, str.length - 1);
 }
 
 
@@ -160,7 +160,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    return value.convertToUpperCase;
+    return value.toUpperCase;
 }
 
 /**
@@ -228,8 +228,8 @@ function encodeToRot13(str) {
 
     var encoded = '';
     var index;
-    for (var char of str){
-        encoded += (index = input.indexOf(char) == -1 ? ch : output[index]);
+    for (var ch of str) {
+        encoded += (index = input.indexOf(ch)) == -1 ? ch : output[index];
     }
     return encoded;
 }
