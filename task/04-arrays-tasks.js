@@ -273,7 +273,7 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   return arr.reduce((new_array, element, i) => new_array.concat(Array.from({ length: i + 1 }, () => element)), []);
+    return arr.reduce((new_arr, elem, i) => new_arr.concat(Array.from({ length: i + 1 }, () => elem)), []);
 }
 
 
@@ -593,10 +593,11 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-   const tail = arr.slice(Math.ceil(arr.length / 2), arr.length);
-    const mid = arr.slice(Math.floor(arr.length / 2), Math.ceil(arr.length / 2));
-    const head = arr.slice(0, Math.floor(arr.length / 2));
-    return tail.concat(mid).concat(head);
+   let len = Math.floor(arr.length / 2)
+   let temp = arr[len]
+   let result = arr.splice(0, len).concat(arr.splice(arr.length - len, len))
+   if (arr.length % 2 == 1) result.splice(len, 0, temp)
+   return result
 }
 
 
