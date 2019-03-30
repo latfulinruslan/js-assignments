@@ -39,7 +39,7 @@ function findElement(arr, value) {
  */
 function generateOdds(len) {
    var returnArray = [];
-   for (var i = -1; returnArray < len; i += 2){
+   for (var i = -1; returnArray.length < len; i += 2){
       returnArray.push(i);
    }
    return returnArray;
@@ -120,7 +120,7 @@ function removeFalsyValues(arr) {
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
 function getUpperCaseStrings(arr) {
-   return arr.map(element => element.toUpperCase);
+   return Array.from(arr, element => element.toUpperCase());
 }
 
 
@@ -273,9 +273,7 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   for(var i = 1; i < arr.length; i++) {
-      arr.splice(i, 0, item)
-   }
+   return arr.reduce((new_array, element, i) => new_array.concat(Array.from({ length: i + 1 }, () => element)), []);
 }
 
 
@@ -381,7 +379,8 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-   return arr.filter(element => element == item).length
+   const reducer = (acc, elem) => acc + (elem === item ? 1 : 0);
+    return arr.reduce(reducer, 0);
 }
 
 /**
@@ -594,11 +593,10 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-   let len = Math.floor(arr.length / 2)
-   let temp = arr[len]
-   let result = arr.splice(0, len).concat(arr.splice(arr.length - len, len))
-   if (arr.length % 2 == 1) result.splice(len, 0, temp)
-   return result
+   const tail = arr.slice(Math.ceil(arr.length / 2), arr.length);
+    const mid = arr.slice(Math.floor(arr.length / 2), Math.ceil(arr.length / 2));
+    const head = arr.slice(0, Math.floor(arr.length / 2));
+    return tail.concat(mid).concat(head);
 }
 
 
