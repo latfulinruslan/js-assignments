@@ -38,7 +38,12 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-   return Array.from({ length: len }, (elem, x) => (x * 2 + 1));
+   var returnArray = [];
+   for (var i = -1; returnArray.length < len; i += 2){
+      returnArray.push(i);
+   }
+   return returnArray;
+}
 
 
 /**
