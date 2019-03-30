@@ -86,7 +86,7 @@ function getArrayOfPositives(arr) {
  * @example
  *    [ 0, 1, 'cat', 3, true, 'dog' ] => [ 'cat', 'dog' ]
  *    [ 1, 2, 3, 4, 5 ] => []
- *    [ 'cat, 'dog', 'raccon' ] => [ 'cat', 'dog', 'racoon' ]
+ *    [ 'cat', 'dog', 'raccon' ] => [ 'cat', 'dog', 'racoon' ]
  */
 function getArrayOfStrings(arr) {
    return arr.filter(element => typeof(element) === 'string' || element instanceof String);
@@ -526,17 +526,9 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   const map = new Map();
-    array.map(function (element) {
-        const key = keySelector(element);
-        const value = valueSelector(element);
-        const entry = map.get(key);
-        if (entry === undefined) {
-            map.set(key, [value]);
-        } else {
-            entry.push(value);
-        }
-    });
+   let map = new Map(); 
+    array.map((item) => { map.has(keySelector(item)) ? map.get(keySelector(item)).push(valueSelector(item)) : 
+        map.set(keySelector(item), [valueSelector(item)]); })
     return map;
 }
 
@@ -602,35 +594,36 @@ function swapHeadAndTail(arr) {
 
 
 module.exports = {
-    findElement: findElement,
-    generateOdds: generateOdds,
-    doubleArray: doubleArray,
-    getArrayOfPositives: getArrayOfPositives,
-    getArrayOfStrings: getArrayOfStrings,
-    removeFalsyValues: removeFalsyValues,
-    getUpperCaseStrings: getUpperCaseStrings,
-    getStringsLength: getStringsLength,
-    insertItem: insertItem,
-    getHead: getHead,
-    getTail: getTail,
-    toCsvText: toCsvText,
-    toStringList: toStringList,
-    toArrayOfSquares: toArrayOfSquares,
-    getMovingSum: getMovingSum,
-    getSecondItems: getSecondItems,
-    propagateItemsByPositionIndex: propagateItemsByPositionIndex,
-    get3TopItems: get3TopItems,
-    getPositivesCount: getPositivesCount,
-    sortDigitNamesByNumericOrder: sortDigitNamesByNumericOrder,
-    getItemsSum: getItemsSum,
-    getFalsyValuesCount: getFalsyValuesCount,
-    findAllOccurences: findAllOccurences,
-    sortCitiesArray: sortCitiesArray,
-    getIdentityMatrix: getIdentityMatrix,
-    getIntervalArray: getIntervalArray,
-    distinct: distinct,
-    group: group,
-    selectMany: selectMany,
-    getElementByIndexes: getElementByIndexes,
-    swapHeadAndTail: swapHeadAndTail
+   findElement: findElement,
+   generateOdds: generateOdds,
+   doubleArray: doubleArray,
+   getArrayOfPositives: getArrayOfPositives,
+   getArrayOfStrings: getArrayOfStrings,
+   removeFalsyValues: removeFalsyValues,
+   getUpperCaseStrings: getUpperCaseStrings,
+   getStringsLength: getStringsLength,
+   insertItem: insertItem,
+   getHead: getHead,
+   getTail: getTail,
+   toCsvText: toCsvText,
+   toStringList: toStringList,
+   toArrayOfSquares: toArrayOfSquares,
+   getMovingSum: getMovingSum,
+   getSecondItems: getSecondItems,
+   propagateItemsByPositionIndex: propagateItemsByPositionIndex,
+   get3TopItems: get3TopItems,
+   getPositivesCount: getPositivesCount,
+   sortDigitNamesByNumericOrder: sortDigitNamesByNumericOrder,
+   getItemsSum: getItemsSum,
+   getFalsyValuesCount: getFalsyValuesCount,
+   findAllOccurences: findAllOccurences,
+   sortCitiesArray: sortCitiesArray,
+   getIdentityMatrix: getIdentityMatrix,
+   getIntervalArray: getIntervalArray,
+   distinct: distinct,
+   group: group,
+   selectMany: selectMany,
+   getElementByIndexes: getElementByIndexes,
+   swapHeadAndTail: swapHeadAndTail
 };
+
